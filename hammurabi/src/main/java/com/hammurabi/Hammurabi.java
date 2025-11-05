@@ -8,7 +8,7 @@ public class Hammurabi {
     Random rand = new Random();
     Scanner scanner = new Scanner(System.in);
 
-	int year = 10;
+	int year = 1;
 	int starved = 0;
 	int immigrants = 5;
 	int population = 100;
