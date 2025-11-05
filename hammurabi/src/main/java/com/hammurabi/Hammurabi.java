@@ -187,7 +187,7 @@ public class Hammurabi {
 		int plagueDeaths = 0;
 		plagueDeaths = plagueDeaths(population);
 		if (plagueDeaths > 0) {
-			System.out.println("O Great Hammurabi, a plague has swept through our nation! " + String.valueOf(plagueDeaths) + " people have died.");
+			System.out.println("O Great Hammurabi, a plague has swept through our kingdom! " + String.valueOf(plagueDeaths) + " people have died.");
 		}
 		return plagueDeaths;
 	}
