@@ -8,7 +8,7 @@ public class Hammurabi {
     Random rand = new Random();
     Scanner scanner = new Scanner(System.in);
 
-	int year = 1;
+	int year = 10;
 	int starved = 0;
 	int immigrants = 5;
 	int population = 100;
@@ -48,12 +48,15 @@ public class Hammurabi {
 			if (uprising) {
 				System.out.println(	"O Great Hammurabi! Too many people have starved to death!\n" + 
 									"The people are uprising!");
-				
+				System.out.println("\nYou have been kicked out of office.");
+				break;
 			}
 			if (starvationDeaths == 0) {
 				this.immigrants = immigrants(this.population, this.acres, this.bushelsOwned);
 				this.population += this.immigrants;
 				this.totalImmigrants += this.immigrants;
+			} else {
+				this.immigrants = 0;
 			}
 			this.harvest = harvest(acresPlanted, acresPlanted*2);
 			this.totalBushelsHarvested += this.harvest;
@@ -63,7 +66,9 @@ public class Hammurabi {
 			this.year++;
 			if (this.year > 10) {
 				this.acresPerPerson = this.acres/this.population;
-				this.score += this.acresPerPerson - this.totalStarved;
+				this.score += (this.acresPerPerson * 10) - this.totalStarved;
+				finalSummary();
+				break;
 			}
 		}
     }
@@ -98,8 +103,11 @@ public class Hammurabi {
 	public void finalSummary() {
 		System.out.println(	"\nO great Hammurabi!\n" +
 							"You have finished your 10 year rule.\n" +
+							"In the previous year " + this.immigrants + " people entered the kingdom.\n" +
+							"The population is now " + this.population + ".\n" +
+							"The city owns " + this.acres + " acres of land.\n" +
 							"During your rule, " + this.totalStarved + " people starved.\n" +
-							"There are now " + this.acresPerPerson + "acres per person in the kingdom.\n" +
+							"There are " + this.acresPerPerson + " acres per person in the city.\n" +
 							"Your total score is: " + this.score);
 		
 	}
