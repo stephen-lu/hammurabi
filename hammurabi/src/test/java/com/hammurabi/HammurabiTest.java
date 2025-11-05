@@ -1,4 +1,4 @@
-package hammurabi;
+package com.hammurabi;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class HammurabiTest {
-    
     Hammurabi ham;
     
     boolean about(double expected, double actual) {
@@ -64,12 +63,12 @@ public class HammurabiTest {
         int imm = ham.immigrants(10, 1200, 500);
         assertEquals("Wrong number of immigrants.", 25, imm);
     }
-
+    
     @Test
     public final void testHarvest() {
         int[] yield = new int[7];
         for (int i = 0; i < 1000; i++) {
-            int harvest = ham.harvest(1);
+            int harvest = ham.harvest(1, 2);
             assertTrue("Illegal harvest per acre: " + harvest, harvest > 0 && harvest <= 6);
             yield[harvest] += 1;
         }
@@ -77,7 +76,7 @@ public class HammurabiTest {
             assertTrue("You never have a yield of " + j + " bushels per acre.", yield[j] > 0);
         }
     }
-
+    
     @Test
     public final void testGrainEatenByRats1() {
         int infestations = 0;
@@ -87,7 +86,7 @@ public class HammurabiTest {
                 infestations += 1;
             }
         }
-        int percentInfestations = infestations / 100;
+        int percentInfestations = infestations;
         assertTrue("Number of rat infestations is about " + percentInfestations + 
                    ", not about 40%.", about(400, infestations));
     }
@@ -96,14 +95,17 @@ public class HammurabiTest {
     public final void testGrainEatenByRats2() {
         int percent = 0;
         int[] counts = new int[31];
+        for (int i = 0; i < 31; i++) {
+            counts[i] = 0;
+        }
         for (int i = 0; i < 10000; i++) {
             percent = ham.grainEatenByRats(100);
+            if (percent != 0) counts[percent] = percent;
             if (percent == 0) continue;
-            counts[percent] += 1;
             assertTrue("Rats ate " + percent + "% of your grain, not 10% to 30%.",
                        percent >= 10 && percent <= 30);
         }
-        for (int j = 11; j < 30; j++) {
+        for (int j = 10; j < 30; j++) {
             assertTrue("Rats never ate " + j + "% of your grain.", counts[j] > 0);
         }
     }
@@ -120,6 +122,6 @@ public class HammurabiTest {
             assertTrue("You never have a land cost of " + j + " bushels per acre.", cost[j] > 0);
         }
     }
-
+    
 }
 
