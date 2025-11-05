@@ -107,7 +107,7 @@ public class Hammurabi {
 							"The population is now " + this.population + ".\n" +
 							"The city owns " + this.acres + " acres of land.\n" +
 							"During your rule, " + this.totalStarved + " people starved.\n" +
-							"There are " + this.acresPerPerson + " acres per person in the city.\n" +
+							"There are " + this.acresPerPerson + " acres per person in the kingdom.\n" +
 							"Your total score is: " + this.score);
 		
 	}
